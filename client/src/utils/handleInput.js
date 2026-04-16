@@ -10,7 +10,8 @@ export const handleInputLogic = ({
   MAX_TRIES,
   setGameOver,
   gameOver,
-  setSubmittedRows
+  setSubmittedRows,
+  setWon
 }) => {
   if (gameOver) return;
 
@@ -28,8 +29,10 @@ export const handleInputLogic = ({
 
       if (guess === WORD) {
         setGameOver(true);
+        setWon(true);
       } else if (currentRow + 1 === MAX_TRIES) {
         setGameOver(true);
+        setWon(false);
       } else {
         setCurrentRow(currentRow + 1);
         setCurrentCol(0);

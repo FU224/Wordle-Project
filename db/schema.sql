@@ -1,0 +1,36 @@
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS user_stats (
+  user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  plays INTEGER NOT NULL DEFAULT 0,
+  wins INTEGER NOT NULL DEFAULT 0,
+  current_streak INTEGER NOT NULL DEFAULT 0,
+  best_streak INTEGER NOT NULL DEFAULT 0,
+  last_played_at TIMESTAMPTZ
+);
+
+CREATE TABLE IF NOT EXISTS wordle_words (
+  id SERIAL PRIMARY KEY,
+  word VARCHAR(16) UNIQUE NOT NULL,
+  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+INSERT INTO wordle_words (word)
+VALUES
+  ('MUSIC'),
+  ('GAMES'),
+  ('REACT'),
+  ('PLANT'),
+  ('CHAIN'),
+  ('STONE'),
+  ('PHONE'),
+  ('WORLD'),
+  ('HEART'),
+  ('EARTH')
+ON CONFLICT (word) DO NOTHING;

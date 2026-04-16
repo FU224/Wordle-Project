@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./style.css";
 import { handleInputLogic } from "./utils/handleInput";
 import { getColor } from "./utils/getColor";
@@ -6,8 +6,8 @@ import { getEmptyBoard } from "./utils/getEmptyBoard";
 import { keyboardRows } from "./utils/keyboard";
 import { getTranslation } from "./utils/translations";
 
-const WORDS = ["MUSIC", "GAMES", "REACT", "PLANT", "CHAIN", "STONE", "PHONE", "WORLD", "HEART", "EARTH"];
 const MAX_TRIES = 6;
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function App() {
   const [lang, setLang] = useState(localStorage.getItem("language") || "en");
@@ -18,22 +18,52 @@ function App() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const [word, setWord] = useState(WORDS[Math.floor(Math.random() * WORDS.length)]);
-  const [board, setBoard] = useState(getEmptyBoard(MAX_TRIES, word.length));
+  const [word, setWord] = useState("");
+  const [board, setBoard] = useState(getEmptyBoard(MAX_TRIES, 5));
   const [currentRow, setCurrentRow] = useState(0);
   const [currentCol, setCurrentCol] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [won, setWon] = useState(false);
   const [submittedRows, setSubmittedRows] = useState([]);
+  const savedGameResultRef = useRef(false);
 
+  // Short helper for translated UI text. It keeps JSX cleaner by hiding translation lookup details.
   const t = (key, params) => getTranslation(lang, key, params);
 
+  // Updates the current language and saves it in localStorage so refreshes keep the same choice.
   const handleLanguageChange = (newLang) => {
     setLang(newLang);
     localStorage.setItem("language", newLang);
   };
 
+  // Central reset helper so initial load and "play again" use the same setup logic.
+  // It replaces the word and clears all board progress for a fresh round.
+  const startNewGame = (nextWord) => {
+    setWord(nextWord);
+    setBoard(getEmptyBoard(MAX_TRIES, nextWord.length));
+    setCurrentRow(0);
+    setCurrentCol(0);
+    setGameOver(false);
+    setWon(false);
+    setSubmittedRows([]);
+    savedGameResultRef.current = false;
+  };
+
+  // Requests a random word from the backend, which now reads words from PostgreSQL.
+  const fetchRandomWord = async () => {
+    const response = await fetch(`${API_BASE_URL}/words/random`);
+    const data = await response.json();
+
+    if (!response.ok || !data.word) {
+      throw new Error(data.error || "Failed to load word");
+    }
+
+    return data.word;
+  };
+
+  // Calculates the visual state of each on-screen keyboard key from already submitted rows.
   const getKeyColor = (letter) => {
+    // Keyboard colors keep the "best" result seen so far: green > yellow > gray.
     let bestColor = null;
     
     for (let rowIdx of submittedRows) {
@@ -56,18 +86,45 @@ function App() {
     return bestColor;
   };
 
+  // Reloads the user profile from the server whenever we have a token, including after refresh.
   useEffect(() => {
-    if (token) {
-      setUser({ token });
-    }
+    // If a token exists, fetch the real profile from the server instead of trusting local state.
+    const loadProfile = async () => {
+      if (!token) {
+        setUser(null);
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Session expired");
+        }
+
+        const profile = await response.json();
+        setUser(profile);
+      } catch {
+        localStorage.removeItem("token");
+        setToken(null);
+        setUser(null);
+      }
+    };
+
+    loadProfile();
   }, [token]);
 
+  // Handles both login and registration form submits and stores the successful auth response.
   const handleAuth = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       const endpoint = authMode === "login" ? "/login" : "/register";
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })
@@ -77,7 +134,11 @@ function App() {
       if (response.ok) {
         localStorage.setItem("token", data.token);
         setToken(data.token);
-        setUser({ username: data.username });
+        setUser({
+          id: data.id,
+          username: data.username,
+          stats: data.stats,
+        });
         setUsername("");
         setPassword("");
       } else {
@@ -89,24 +150,29 @@ function App() {
     setLoading(false);
   };
 
+  // Clears the local session and resets the game state when the user logs out.
   const handleLogout = () => {
     localStorage.removeItem("token");
     setToken(null);
     setUser(null);
+    setWord("");
+    setBoard(getEmptyBoard(MAX_TRIES, 5));
   };
 
+  // Starts another round by asking the backend for a new random word and resetting the board.
   const resetGame = () => {
-    const newWord = WORDS[Math.floor(Math.random() * WORDS.length)];
-    setWord(newWord);
-    setBoard(getEmptyBoard(MAX_TRIES, newWord.length));
-    setCurrentRow(0);
-    setCurrentCol(0);
-    setGameOver(false);
-    setWon(false);
-    setSubmittedRows([]);
+    fetchRandomWord()
+      .then((nextWord) => {
+        startNewGame(nextWord);
+      })
+      .catch((error) => {
+        alert("Error: " + error.message);
+      });
   };
 
+  // Sends one keyboard action into the shared input utility that updates board and game state.
   const handleInput = (key) => {
+    // The actual board-editing rules live in a utility so App stays focused on state wiring.
     handleInputLogic({
       key,
       board,
@@ -124,8 +190,14 @@ function App() {
     });
   };
 
+  // Subscribes to the real keyboard so physical key presses work the same as on-screen buttons.
   useEffect(() => {
+    // Listen to physical keyboard input and translate it into the same actions as on-screen keys.
     const handleKey = (e) => {
+      if (!word) {
+        return;
+      }
+
       if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
         return;
       }
@@ -138,6 +210,75 @@ function App() {
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   });
+
+  // After a game ends, sends the win/loss result once and refreshes the stats shown in the UI.
+  useEffect(() => {
+    // Persist the finished game's result exactly once, even though React may re-render.
+    const saveGameResult = async () => {
+      if (!gameOver || !token || savedGameResultRef.current) {
+        return;
+      }
+
+      savedGameResultRef.current = true;
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/stats`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ won }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to save stats");
+        }
+
+        setUser(data);
+      } catch (error) {
+        savedGameResultRef.current = false;
+        alert("Error: " + error.message);
+      }
+    };
+
+    saveGameResult();
+  }, [gameOver, token, won]);
+
+  // Loads the first playable word after the user profile exists and no current word is active yet.
+  useEffect(() => {
+    // After login/profile load, fetch the first playable word for the session.
+    if (!user || word) {
+      return;
+    }
+
+    fetchRandomWord()
+      .then((nextWord) => {
+        startNewGame(nextWord);
+      })
+      .catch((error) => {
+        alert("Error: " + error.message);
+      });
+  }, [user, word]);
+
+  const stats = user?.stats || {
+    plays: 0,
+    wins: 0,
+    losses: 0,
+    winRate: 0,
+    currentStreak: 0,
+    bestStreak: 0,
+  };
+  const statsLabels = {
+    plays: "Plays",
+    wins: "Wins",
+    losses: "Losses",
+    winRate: "Win Rate",
+    currentStreak: "Current Streak",
+    bestStreak: "Best Streak",
+  };
 
   if (!user) {
     return (
@@ -187,7 +328,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1 className="title">🎮 {t("wordle")}</h1>
+        <h1 className="title">{t("wordle")}</h1>
         <div className="header-right">
           <select value={lang} onChange={(e) => handleLanguageChange(e.target.value)} className="lang-select">
             <option value="en">English</option>
@@ -202,6 +343,33 @@ function App() {
       </header>
 
       <main className="game-container">
+        <section className="stats-card">
+          <div className="stat-item">
+            <span className="stat-label">{statsLabels.plays}</span>
+            <strong>{stats.plays}</strong>
+          </div>
+          <div className="stat-item">
+            <span className="stat-label">{statsLabels.wins}</span>
+            <strong>{stats.wins}</strong>
+          </div>
+          <div className="stat-item">
+            <span className="stat-label">{statsLabels.losses}</span>
+            <strong>{stats.losses}</strong>
+          </div>
+          <div className="stat-item">
+            <span className="stat-label">{statsLabels.winRate}</span>
+            <strong>{stats.winRate}%</strong>
+          </div>
+          <div className="stat-item">
+            <span className="stat-label">{statsLabels.currentStreak}</span>
+            <strong>{stats.currentStreak}</strong>
+          </div>
+          <div className="stat-item">
+            <span className="stat-label">{statsLabels.bestStreak}</span>
+            <strong>{stats.bestStreak}</strong>
+          </div>
+        </section>
+
         <div className="game-info">
           <p>{t("guessWord", { max: MAX_TRIES })}</p>
           <p className="word-length">{t("wordLength", { length: word.length })}</p>
@@ -238,6 +406,7 @@ function App() {
                   <button
                     key={key}
                     onClick={() => handleInput(key)}
+                    disabled={!word}
                     className={`key-btn ${keyColor ? keyColor : ''}`}
                   >
                     {key === "BACK" ? "⌫" : key}

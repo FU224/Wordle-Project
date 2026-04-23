@@ -1,4 +1,5 @@
-import 'dotenv/config';
+import dotenv from 'dotenv'
+dotenv.config()
 import express from 'express';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
@@ -7,19 +8,18 @@ import { initializeDatabase, pool } from './db.js';
 
 const app = express();
 const PORT = Number(process.env.PORT || 5000);
-const SECRET_KEY = process.env.SECRET_KEY || 'your_secret_key_change_in_production';
+const SECRET_KEY = process.env.SECRET_KEY || 'SecretKey';
 
 app.use(cors());
 app.use(express.json());
 
-// Creates a JWT token that identifies the logged-in user on later protected requests.
+// jwn token
 function createToken(user) {
   return jwt.sign({ userId: user.id, username: user.username }, SECRET_KEY, { expiresIn: '7d' });
 }
 
-// Looks up a user by username and returns both auth data and game stats in one row.
+//User inf
 async function findUserByUsername(username) {
-  // Pull auth data plus stats in one query so login/register responses already have profile data.
   const { rows } = await pool.query(
     `
       SELECT
@@ -64,9 +64,8 @@ async function getUserProfileById(userId) {
   return rows[0] || null;
 }
 
-// Fetches one random active Wordle word from the database for a new round.
+// Rnadom word fetch
 async function getRandomWord() {
-  // RANDOM() is simple and fine here because the words table is still small.
   const { rows } = await pool.query(
     `
       SELECT word
@@ -80,9 +79,9 @@ async function getRandomWord() {
   return rows[0]?.word || null;
 }
 
-// Converts the raw database row into the cleaner JSON structure used by the frontend.
+// DB => JSON file
 function formatProfile(user) {
-  // Convert DB values into the exact shape the React app expects.
+  // DB => React understandable info
   const plays = Number(user.plays || 0);
   const wins = Number(user.wins || 0);
 
@@ -101,29 +100,30 @@ function formatProfile(user) {
   };
 }
 
-// Express middleware that validates the Bearer token and attaches the matched user to req.user.
+// JWT check and connecting it with a user
 async function authenticate(req, res, next) {
   try {
+    // request token       // splits string from Bearer and token
     const token = req.headers.authorization?.split(' ')[1];
-    if (!token) {
+    if (!token) {         //User not logged (if there is no token)
       return res.status(401).json({ error: 'No token' });
     }
-
+      //                  jsonwebtoken exten. function to check if JWT correct and was created by server
     const decoded = jwt.verify(token, SECRET_KEY);
     const user = await getUserProfileById(decoded.userId);
 
-    if (!user) {
+    if (!user) {          //JWT token exists but user dont
       return res.status(401).json({ error: 'User not found' });
     }
 
-    req.user = user;
-    next();
-  } catch (error) {
+    req.user = user;        //Attach. user to request
+    next(); //Check competed
+  } catch (error) { //If error...
     res.status(401).json({ error: 'Invalid token' });
   }
 }
 
-// Creates a new account, hashes the password, creates starting stats, and returns token + profile.
+// Creates a new account, hashes the password, and returns token + profile
 app.post('/register', async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -149,7 +149,7 @@ app.post('/register', async (req, res) => {
 
     const user = rows[0];
 
-    // Create the linked stats row immediately so later stat updates always have a target.
+    // Linked stats
     await pool.query(
       `
         INSERT INTO user_stats (user_id)
@@ -158,9 +158,11 @@ app.post('/register', async (req, res) => {
       `,
       [user.id]
     );
-
+      //JWT Token function
     const token = createToken(user);
+      //
     const profile = await getUserProfileById(user.id);
+      //translate profile data from DB to JSON file
     res.json({ token, ...formatProfile(profile) });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -181,16 +183,18 @@ app.post('/login', async (req, res) => {
     if (!isValid) {
       return res.status(400).json({ error: 'Invalid password' });
     }
-
+        //JWT Token function
     const token = createToken(user);
+          //translate profile data from DB to JSON file
     res.json({ token, ...formatProfile(user) });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// Returns the current logged-in user's profile when the frontend reloads with a saved token.
+// Returns logged in user profile when the frontend reloads with a saved token.
 app.get('/profile', authenticate, (req, res) => {
+        //translate profile data from DB to JSON file
   res.json(formatProfile(req.user));
 });
 

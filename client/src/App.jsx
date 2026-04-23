@@ -5,6 +5,8 @@ import { getColor } from "./utils/getColor";
 import { getEmptyBoard } from "./utils/getEmptyBoard";
 import { keyboardRows } from "./utils/keyboard";
 import { getTranslation } from "./utils/translations";
+import React from "react";
+import ReactDOM from "react-dom/client";
 
 const MAX_TRIES = 6;
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -431,3 +433,9 @@ function App() {
   );
 }
 export default App;
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

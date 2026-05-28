@@ -9,7 +9,7 @@ import { initializeDatabase, pool } from './db.js';
 const app = express();
 const PORT = 5000;
 const SECRET_KEY = process.env.JWT_KEY;
-
+//JWN
 app.use(cors());
 app.use(express.json());
 

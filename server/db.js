@@ -3,21 +3,10 @@ import { Pool } from "pg";
 const connectionString = process.env.DATABASE_URL;
 
 // Подключение / доступ к дб через файл .env (dannie k database)
-export const pool = new Pool(
-  connectionString
-    ? {
-        connectionString,
-        ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false,
-      }
-    : {
-        host: process.env.DB_HOST || "localhost",
-        port: Number(process.env.DB_PORT || 5432),
-        database: process.env.DB_NAME || "postgres",
-        user: process.env.DB_USER || "postgres",
-        password: process.env.DB_PASSWORD || "111",
-        ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false,
-      }
-);
+new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
 
 export async function initializeDatabase() {
   // Создание таблицы польз.

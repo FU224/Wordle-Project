@@ -3,17 +3,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DB_CLIENT: ${{ secrets.DB_CLIENT }}
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      DB_HOST: ${{ secrets.DB_HOST }}
-      DB_NAME: ${{ secrets.DB_NAME }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DB_PORT: ${{ secrets.DB_PORT }}
-      DB_USER: ${{ secrets.DB_USER }}
       JWT_KEY: ${{ secrets.JWT_KEY }}
 
     steps:
       - name: Use secret as env var
         run: |
           echo "Secret is available"
-          python script.py

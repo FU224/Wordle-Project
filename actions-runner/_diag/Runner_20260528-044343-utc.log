@@ -1,0 +1,174 @@
+[2026-05-28 04:43:43Z INFO HostContext] No proxy settings were found based on environmental variables (http_proxy/https_proxy/HTTP_PROXY/HTTPS_PROXY)
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:43Z INFO HostContext] Well known config file 'Credentials': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.credentials'
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:43Z INFO HostContext] Well known config file 'Runner': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.runner'
+[2026-05-28 04:43:43Z INFO Listener] Runner is built for Windows (X64) - win-x64.
+[2026-05-28 04:43:43Z INFO Listener] RuntimeInformation: Microsoft Windows 10.0.26200.
+[2026-05-28 04:43:43Z INFO Listener] Version: 2.334.0
+[2026-05-28 04:43:43Z INFO Listener] Commit: f1995ede5d885c997d13d8eca5467c4ce97fe69c
+[2026-05-28 04:43:43Z INFO Listener] Culture: en-US
+[2026-05-28 04:43:43Z INFO Listener] UI Culture: en-US
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:43Z INFO Listener] Validating directory permissions for: 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:43Z INFO CommandLineParser] Parse
+[2026-05-28 04:43:43Z INFO CommandLineParser] Parsing 5 args
+[2026-05-28 04:43:43Z INFO CommandLineParser] parsing argument
+[2026-05-28 04:43:43Z INFO CommandLineParser] HasArgs: False
+[2026-05-28 04:43:43Z INFO CommandLineParser] Adding Command: configure
+[2026-05-28 04:43:43Z INFO CommandLineParser] parsing argument
+[2026-05-28 04:43:43Z INFO CommandLineParser] HasArgs: True
+[2026-05-28 04:43:43Z INFO CommandLineParser] arg: url
+[2026-05-28 04:43:43Z INFO CommandLineParser] parsing argument
+[2026-05-28 04:43:43Z INFO CommandLineParser] HasArgs: True
+[2026-05-28 04:43:43Z INFO CommandLineParser] Adding option 'url': 'https://github.com/FU224/Wordle-Project'
+[2026-05-28 04:43:43Z INFO CommandLineParser] parsing argument
+[2026-05-28 04:43:43Z INFO CommandLineParser] HasArgs: True
+[2026-05-28 04:43:43Z INFO CommandLineParser] arg: token
+[2026-05-28 04:43:43Z INFO CommandLineParser] parsing argument
+[2026-05-28 04:43:43Z INFO CommandLineParser] HasArgs: True
+[2026-05-28 04:43:43Z INFO CommandLineParser] Adding option 'token': '***'
+[2026-05-28 04:43:43Z INFO Listener] Arguments parsed
+[2026-05-28 04:43:43Z INFO Runner] ExecuteCommand
+[2026-05-28 04:43:43Z INFO ConfigurationStore] currentAssemblyLocation: C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin\Runner.Listener.dll
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:43Z INFO ConfigurationStore] binPath: C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:43Z INFO ConfigurationStore] RootFolder: C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:43Z INFO HostContext] Well known config file 'Runner': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.runner'
+[2026-05-28 04:43:43Z INFO ConfigurationStore] ConfigFilePath: C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.runner
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:43Z INFO HostContext] Well known config file 'MigratedRunner': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.runner_migrated'
+[2026-05-28 04:43:43Z INFO ConfigurationStore] MigratedConfigFilePath: C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.runner_migrated
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:43Z INFO HostContext] Well known config file 'Credentials': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.credentials'
+[2026-05-28 04:43:43Z INFO ConfigurationStore] CredFilePath: C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.credentials
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:43Z INFO HostContext] Well known config file 'MigratedCredentials': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.credentials_migrated'
+[2026-05-28 04:43:43Z INFO ConfigurationStore] MigratedCredFilePath: C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.credentials_migrated
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:43Z INFO HostContext] Well known config file 'Service': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.service'
+[2026-05-28 04:43:43Z INFO ConfigurationStore] ServiceConfigFilePath: C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.service
+[2026-05-28 04:43:43Z INFO CommandSettings] Flag 'help': 'False'
+[2026-05-28 04:43:43Z INFO CommandSettings] Flag 'version': 'False'
+[2026-05-28 04:43:43Z INFO CommandSettings] Flag 'commit': 'False'
+[2026-05-28 04:43:43Z INFO CommandSettings] Flag 'check': 'False'
+[2026-05-28 04:43:43Z INFO CommandSettings] Command 'configure': 'True'
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE: 
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE: --------------------------------------------------------------------------------
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE: |        ____ _ _   _   _       _          _        _   _                      |
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE: |       / ___(_) |_| | | |_   _| |__      / \   ___| |_(_) ___  _ __  ___      |
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE: |      | |  _| | __| |_| | | | | '_ \    / _ \ / __| __| |/ _ \| '_ \/ __|     |
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE: |      | |_| | | |_|  _  | |_| | |_) |  / ___ \ (__| |_| | (_) | | | \__ \     |
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE: |       \____|_|\__|_| |_|\__,_|_.__/  /_/   \_\___|\__|_|\___/|_| |_|___/     |
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE: |                                                                              |
+[2026-05-28 04:43:43Z INFO Terminal] WRITE: |                       
+[2026-05-28 04:43:43Z INFO Terminal] WRITE: Self-hosted runner registration
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE:                         |
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE: |                                                                              |
+[2026-05-28 04:43:43Z INFO Terminal] WRITE LINE: --------------------------------------------------------------------------------
+[2026-05-28 04:43:43Z INFO ConfigurationManager] ConfigureAsync
+[2026-05-28 04:43:43Z INFO CommandSettings] Flag 'generateServiceConfig': 'False'
+[2026-05-28 04:43:43Z INFO ConfigurationStore] IsConfigured()
+[2026-05-28 04:43:43Z INFO ConfigurationStore] IsConfigured: False
+[2026-05-28 04:43:43Z INFO ConfigurationManager] Is configured: False
+[2026-05-28 04:43:43Z INFO CommandSettings] Arg 'url': 'https://github.com/FU224/Wordle-Project'
+[2026-05-28 04:43:43Z INFO CommandSettings] Remove url from Arg dictionary.
+[2026-05-28 04:43:43Z INFO CommandSettings] Arg 'token': '***'
+[2026-05-28 04:43:43Z INFO CommandSettings] Remove token from Arg dictionary.
+[2026-05-28 04:43:44Z INFO ConfigurationManager] Http response code: OK from 'POST https://api.github.com/actions/runner-registration' (E5B4:2E58AF:22BD8C2:21C0447:6A17C800)
+[2026-05-28 04:43:44Z INFO ConfigurationManager] Using runner-admin flow: False
+[2026-05-28 04:43:44Z INFO ConfigurationManager] cred retrieved via GitHub auth
+[2026-05-28 04:43:44Z INFO RunnerServer] EstablishVssConnection
+[2026-05-28 04:43:44Z INFO RunnerServer] Establish connection with 100 seconds timeout.
+[2026-05-28 04:43:44Z INFO GitHubActionsService] Starting operation Location.GetConnectionData
+[2026-05-28 04:43:44Z INFO RunnerServer] EstablishVssConnection
+[2026-05-28 04:43:44Z INFO RunnerServer] Establish connection with 60 seconds timeout.
+[2026-05-28 04:43:44Z INFO GitHubActionsService] Starting operation Location.GetConnectionData
+[2026-05-28 04:43:44Z INFO RunnerServer] EstablishVssConnection
+[2026-05-28 04:43:44Z INFO RunnerServer] Establish connection with 60 seconds timeout.
+[2026-05-28 04:43:44Z INFO GitHubActionsService] Starting operation Location.GetConnectionData
+[2026-05-28 04:43:45Z INFO GitHubActionsService] Finished operation Location.GetConnectionData
+[2026-05-28 04:43:45Z INFO GitHubActionsService] Finished operation Location.GetConnectionData
+[2026-05-28 04:43:45Z INFO GitHubActionsService] Finished operation Location.GetConnectionData
+[2026-05-28 04:43:45Z INFO Terminal] WRITE LINE: 
+[2026-05-28 04:43:45Z INFO ConfigurationManager] Test Connection complete.
+[2026-05-28 04:43:45Z INFO HostContext] Well known directory 'Bin': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\bin'
+[2026-05-28 04:43:45Z INFO HostContext] Well known directory 'Root': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner'
+[2026-05-28 04:43:45Z INFO HostContext] Well known config file 'RSACredentials': 'C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.credentials_rsaparams'
+[2026-05-28 04:43:45Z INFO RSAEncryptedFileKeyManager] Creating new RSA key using 2048-bit key length
+[2026-05-28 04:43:45Z INFO RSAEncryptedFileKeyManager] Successfully saved RSA key parameters to file C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.credentials_rsaparams
+[2026-05-28 04:43:45Z INFO CommandSettings] Arg 'runnergroup': ''
+[2026-05-28 04:43:45Z INFO CommandSettings] Flag 'unattended': 'False'
+[2026-05-28 04:43:45Z INFO PromptManager] ReadValue
+[2026-05-28 04:43:45Z INFO Terminal] WRITE: Enter the name of the runner group to add this runner to: 
+[2026-05-28 04:43:45Z INFO Terminal] WRITE: [press Enter for Default] 
+[2026-05-28 04:43:45Z INFO Terminal] READ LINE
+[2026-05-28 04:44:00Z INFO Terminal] Read value: ''
+[2026-05-28 04:44:00Z INFO PromptManager] Falling back to the default: 'Default'
+[2026-05-28 04:44:00Z INFO Terminal] WRITE LINE: 
+[2026-05-28 04:44:00Z INFO ConfigurationManager] Found a self-hosted runner group with id 1 and name Default
+[2026-05-28 04:44:00Z INFO CommandSettings] Flag 'disableupdate': 'False'
+[2026-05-28 04:44:00Z INFO CommandSettings] Flag 'ephemeral': 'False'
+[2026-05-28 04:44:00Z INFO CommandSettings] Arg 'name': ''
+[2026-05-28 04:44:00Z INFO CommandSettings] Flag 'unattended': 'False'
+[2026-05-28 04:44:00Z INFO PromptManager] ReadValue
+[2026-05-28 04:44:00Z INFO Terminal] WRITE: Enter the name of runner: 
+[2026-05-28 04:44:00Z INFO Terminal] WRITE: [press Enter for DESKTOP-THBB4HM] 
+[2026-05-28 04:44:00Z INFO Terminal] READ LINE
+[2026-05-28 04:44:15Z INFO Terminal] Read value: 'Github_Secrets_Runner'
+[2026-05-28 04:44:15Z INFO Terminal] WRITE LINE: 
+[2026-05-28 04:44:15Z INFO CommandSettings] Arg 'labels': ''
+[2026-05-28 04:44:15Z INFO CommandSettings] Flag 'unattended': 'False'
+[2026-05-28 04:44:15Z INFO PromptManager] ReadValue
+[2026-05-28 04:44:15Z INFO Terminal] WRITE: This runner will have the following labels: 'self-hosted', 'Windows', 'X64' 
+Enter any additional labels (ex. label-1,label-2): 
+[2026-05-28 04:44:15Z INFO Terminal] WRITE: [press Enter to skip] 
+[2026-05-28 04:44:15Z INFO Terminal] READ LINE
+[2026-05-28 04:44:21Z INFO Terminal] Read value: ''
+[2026-05-28 04:44:21Z INFO Terminal] WRITE LINE: 
+[2026-05-28 04:44:21Z INFO CommandSettings] Flag 'disableupdate': 'False'
+[2026-05-28 04:44:21Z INFO CommandSettings] Flag 'no-default-labels': 'False'
+[2026-05-28 04:44:21Z INFO CommandSettings] Flag 'disableupdate': 'False'
+[2026-05-28 04:44:21Z INFO CommandSettings] Flag 'ephemeral': 'False'
+[2026-05-28 04:44:21Z INFO ConfigurationStore] Saving OAuth credential @ C:\Users\stepa\OneDrive\Desktop\Wordle\actions-runner\.credentials
+[2026-05-28 04:44:21Z INFO ConfigurationStore] Credentials Saved.
+[2026-05-28 04:44:21Z INFO ConfigurationManager] Service enforced serverUrlV2: https://broker.actions.githubusercontent.com/
+[2026-05-28 04:44:21Z INFO ConfigurationManager] Service enforced useV2Flow: True
+[2026-05-28 04:44:21Z INFO CommandSettings] Arg 'work': ''
+[2026-05-28 04:44:21Z INFO CommandSettings] Flag 'unattended': 'False'
+[2026-05-28 04:44:21Z INFO PromptManager] ReadValue
+[2026-05-28 04:44:21Z INFO Terminal] WRITE: Enter name of work folder: 
+[2026-05-28 04:44:21Z INFO Terminal] WRITE: [press Enter for _work] 
+[2026-05-28 04:44:21Z INFO Terminal] READ LINE
+[2026-05-28 04:44:28Z INFO Terminal] Read value: ''
+[2026-05-28 04:44:28Z INFO PromptManager] Falling back to the default: '_work'
+[2026-05-28 04:44:28Z INFO ConfigurationStore] Saving runner settings.
+[2026-05-28 04:44:28Z INFO ConfigurationStore] Settings Saved.
+[2026-05-28 04:44:28Z INFO Terminal] WRITE LINE: 
+[2026-05-28 04:44:28Z INFO Terminal] WRITE LINE: 
+[2026-05-28 04:44:28Z INFO CommandSettings] Flag 'runasservice': 'False'
+[2026-05-28 04:44:28Z INFO CommandSettings] Flag 'unattended': 'False'
+[2026-05-28 04:44:28Z INFO PromptManager] ReadValue
+[2026-05-28 04:44:28Z INFO Terminal] WRITE: Would you like to run the runner as service? (Y/N) 
+[2026-05-28 04:44:28Z INFO Terminal] WRITE: [press Enter for N] 
+[2026-05-28 04:44:28Z INFO Terminal] READ LINE
+[2026-05-28 04:44:35Z INFO Terminal] Read value: 'y'
+[2026-05-28 04:44:35Z INFO ConfigurationManager] Configuring to run the agent as service
+[2026-05-28 04:44:35Z ERR  WindowsServiceControlManager] Needs Administrator privileges for configure runner as windows service.
+[2026-05-28 04:44:35Z ERR  Runner] System.Security.SecurityException: Needs Administrator privileges for configuring runner as windows service.
+   at GitHub.Runner.Listener.Configuration.WindowsServiceControlManager.ConfigureService(RunnerSettings settings, CommandSettings command)
+   at GitHub.Runner.Listener.Configuration.ConfigurationManager.ConfigureAsync(CommandSettings command)
+   at GitHub.Runner.Listener.Runner.ExecuteCommand(CommandSettings command)
+[2026-05-28 04:44:35Z ERR  Terminal] WRITE ERROR: Needs Administrator privileges for configuring runner as windows service.
+[2026-05-28 04:44:35Z INFO Listener] Runner execution has finished with return code 1

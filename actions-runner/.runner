@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 2,
+  "agentName": "Github_Secrets_Runner",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus9.actions.githubusercontent.com/srMfYux19TleOeHtYUWC4uQzr2wMTYmjruAlM7mDB8EgWxRGcp/",
+  "gitHubUrl": "https://github.com/FU224/Wordle-Project",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}

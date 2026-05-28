@@ -21,8 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+
       - name: Install dependencies
         run: npm install
+        working-directory: server
 
-      - name: Run server
-        run: node server/server.js
+      - name: Run app
+        run: node server.js
+        working-directory: server
